@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file("module.gradle")
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding.enabled = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.appCompatV7
+    implementation rootProject.consraintLayout
+    rootProject.supportLibraries.forEach { api it }
+    api rootProject.kotlin
+
+    api rootProject.arch
+    api rootProject.viewModel
+
+    api rootProject.coroutinesCore
+    api rootProject.coroutinesAndroid
+
+    api rootProject.dagger
+    api rootProject.daggerAndroidSupport
+
+    api rootProject.retrofit
+    api rootProject.okHttpClient
+
+    api rootProject.chuckInterceptor
+
+    api rootProject.materialDesign
+
+    api rootProject.glide
+    kapt rootProject.glideAnnotations
+
+    testApi rootProject.junit
+    androidTestApi 'androidx.test.ext:junit:1.1.2'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
+
+    api project(':base')
+}

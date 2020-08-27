@@ -1,0 +1,28 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures.dataBinding = true
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    kapt rootProject.daggerAnnotations
+    kapt rootProject.daggerAndroidCompiler
+    kapt rootProject.roomDbKapt
+}
