@@ -52,6 +52,4 @@ dependencies {
     testApi rootProject.junit
     androidTestApi 'androidx.test.ext:junit:1.1.2'
     androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
-
-    api project(':base')
 }
